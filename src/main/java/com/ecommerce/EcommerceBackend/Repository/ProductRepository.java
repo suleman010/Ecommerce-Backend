@@ -12,6 +12,8 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
 
     @Query(value = "select * from products",nativeQuery = true)
     public List<Product> getAllProducts();
+    @Query(value = "select * from products WHERE id=:id",nativeQuery = true)
+    public Product getProductById(Long id);
 
 //    @Query(value="select * from products",nativeQuery = true)
 //    public List<Product> addProduct();

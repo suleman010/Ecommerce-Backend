@@ -8,9 +8,10 @@ import javax.persistence.*;
 import java.util.List;
 
 
+@Entity
+@Table(name = "products")
 @Getter
 @Setter
-@Entity
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,8 +23,9 @@ public class Product {
     private String description;
     @Column(name = "price", nullable = false)
     private double price;
-    @Column(name = "image")
-    private List<String> image;
+//    @Column(name = "image")
+//    @OneToMany(fetch= FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "productId")
+//    private List<String> image;
     @Column(name="stock")
     private Long stock;
 //    @ManyToOne
@@ -44,13 +46,13 @@ public class Product {
         this.stock = stock;
     }
 
-    public Product(String name, String description, double price,Long stock, List<String> image) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.image = image;
-        this.stock = stock;
-    }
+//    public Product(String name, String description, double price,Long stock, List<String> image) {
+//        this.name = name;
+//        this.description = description;
+//        this.price = price;
+//        this.image = image;
+//        this.stock = stock;
+//    }
     public Product(){
     }
 

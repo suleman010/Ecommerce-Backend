@@ -5,7 +5,10 @@ import com.ecommerce.EcommerceBackend.Model.Product;
 import com.ecommerce.EcommerceBackend.Service.ProductService;
 import com.ecommerce.EcommerceBackend.Shared.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -16,12 +19,23 @@ public class ProductController {
     ProductService productService;
 
     @GetMapping("/")
-    public ApiResponse<Product> getAllProducts(){
+    public List<Product> getAllProducts(){
         return productService.getAllProducts();
     }
-
     @PostMapping("/")
-    public ApiResponse<Product> addProduct(@RequestBody ProductDto productDto){
-        return productService.addProduct(productDto);
+    public void addProduct(@RequestBody ProductDto productDto){
+        productService.addProduct(productDto);
+    }
+    @PutMapping("/{id}")
+    public void updateProduct(@PathVariable Long id, @RequestBody ProductDto productDto){
+        productService.updateProduct(id,productDto);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteProductById(@PathVariable Long id){
+        productService.deleteProductById(id);
+    }
+    @DeleteMapping("/")
+    public void deleteAllProducts(){
+        productService.deleteAllProducts();
     }
 }
